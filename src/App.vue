@@ -4,8 +4,8 @@
 
 <template>
   <div>
-    <RouterLink to="/">Beans</RouterLink>
-    <RouterLink to="/order">Order</RouterLink>
+    <RouterLink :to="{ name: 'bean-list' }">Beans</RouterLink>
+    <RouterLink :to="{ name: 'order-form' }">Order</RouterLink>
     <RouterView />
   </div>
 </template>

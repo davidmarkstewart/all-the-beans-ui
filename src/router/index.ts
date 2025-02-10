@@ -8,17 +8,18 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'BeanList',
+      name: 'bean-list',
       component: BeanList,
     },
     {
       path: '/bean/:id',
-      name: 'BeanDetail',
+      name: 'bean-detail',
+      props: true,
       component: BeanDetail,
     },
     {
       path: '/order',
-      name: 'OrderForm',
+      name: 'order-form',
       component: OrderForm,
     }
   ],
