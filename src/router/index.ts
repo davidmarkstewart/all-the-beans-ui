@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import BeanList from '../views/BeanList.vue';
-import BeanDetail from '../views/BeanDetail.vue';
 import OrderForm from '../views/OrderForm.vue';
 
 const router = createRouter({
@@ -10,12 +9,6 @@ const router = createRouter({
       path: '/',
       name: 'bean-list',
       component: BeanList,
-    },
-    {
-      path: '/bean/:id',
-      name: 'bean-detail',
-      props: true,
-      component: BeanDetail,
     },
     {
       path: '/order',
