@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import BeanListItem from '../components/BeanListItem.vue';
 import SearchInput from '../components/SearchInput.vue';
-import SelectArrowSvg from '../components/SelectArrowSvg.vue';
+import CountryInput from '../components/CountryInput.vue';
+import ColourInput from '../components/ColourInput.vue';
+import CostInput from '../components/CostInput.vue';
 import { useBeansStore } from '../stores/beans';
-import { uppercaseFirstAndRestLower } from '../helpers';
 import { ref, computed } from 'vue';
 
 const store = useBeansStore();
@@ -37,34 +38,13 @@ const filterOptions = computed(() => {
 <template>
   <div class="bg-white rounded-lg shadow-lg flex px-5 pb-8 pt-4.5 mb-10 gap-8">
     <div class="flex-1">
-      <label for="country" class="text-sm/6 font-medium text-gray-900">Country</label>
-      <div class="mt-1 grid grid-cols-1">
-        <select id="country" name="country" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" v-model="filteredCountry">
-          <option value="All">All</option>
-          <option v-for="country in filterOptions.countries" :key="country" :value="country">{{ country }}</option>
-        </select>
-        <SelectArrowSvg />
-      </div>
+      <CountryInput v-model="filteredCountry" :countries="filterOptions.countries" />
     </div>
     <div class="flex-1">
-      <label for="colour" class="text-sm/6 font-medium text-gray-900">Colour</label>
-      <div class="mt-1 grid grid-cols-1">
-        <select id="colour" name="colour" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" v-model="filteredColour">
-          <option value="All">All</option>
-          <option v-for="colour in filterOptions.colours" :key="colour" :value="colour">{{ uppercaseFirstAndRestLower(colour) }}</option>
-        </select>
-        <SelectArrowSvg />
-      </div>
+      <ColourInput v-model="filteredColour" :colours="filterOptions.colours" />
     </div>
     <div class="flex-1">
-      <label for="cost" class="text-sm/6 font-medium text-gray-900">Cost</label>
-      <div class="mt-1 grid grid-cols-1">
-        <select id="cost" name="cost" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" v-model="filteredCost">
-          <option value="All">All</option>
-          <option v-for="cost in filterOptions.costs" :key="cost.value" :value="cost.value">{{ cost.label }}</option>
-        </select>
-        <SelectArrowSvg />
-      </div>
+      <CostInput v-model="filteredCost" :costs="filterOptions.costs" />
     </div>
     <div class="flex-1">
       <SearchInput v-model="search" />
