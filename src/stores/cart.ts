@@ -1,24 +1,40 @@
 import { defineStore } from 'pinia'
-import { Bean } from '../types';
+import { Bean, Cart, CartBean } from '../types';
 
 export const useCartStore = defineStore('cart', {
   state: () => ({
-    cart: [] as Bean[],
+    cart: { beans: [] } as Cart,
   }),
   getters: {
-    getCart(): Bean[] {
+    getCart(): Cart {
+
       return this.cart;
     },
     getCartItemCount(): number {
-      return this.cart.length;
+      return this.cart.beans.reduce((acc, bean) => acc + bean.quantity, 0);
+    },
+    getCartTotal(): number {
+      return this.cart.beans.reduce((acc, bean) => acc + bean.quantity * bean.cost, 0);
+    },
+    getCartQuantity(): number {
+      return this.cart.beans.reduce((acc, bean) => acc + bean.quantity, 0);
     },
   },
   actions: {
-    addToCart(bean: Bean) {
-      this.cart.push(bean);
+    addToCart(bean: CartBean) {
+      if (this.cart.beans.some((b) => b.id === bean.id)) {
+        this.cart.beans = this.cart.beans.map((b) => {
+          if (b.id === bean.id) {
+            return { ...b, quantity: b.quantity + 1 };
+          }
+          return b;
+        });
+        return;
+      }
+      this.cart.beans.push(bean);
     },
     removeFromCart(bean: Bean) {
-      this.cart = this.cart.filter((b) => b.id !== bean.id);
+      this.cart.beans = this.cart.beans.filter((b) => b.id !== bean.id);
     },
   },
 });

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PropType } from 'vue';
-import { Bean } from '../types';
+import { Bean, CartBean } from '../types';
 import Swal from 'sweetalert2';
 import { useCartStore } from '../stores/cart';
 import { uppercaseFirstAndRestLower } from '../helpers';
@@ -46,7 +46,14 @@ const moreInfo = (bean: Bean) => {
 };
 
 const addToCart = (bean: Bean) => {
-  store.addToCart(bean);
+  const cartBean: CartBean = {
+    id: bean.id,
+    name: bean.name,
+    image: bean.image,
+    cost: bean.cost,
+    quantity: 1,
+  }
+  store.addToCart(cartBean);
 
   Swal.fire({
     confirmButtonText: 'Close',

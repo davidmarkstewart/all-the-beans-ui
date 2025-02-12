@@ -9,3 +9,9 @@ export type Bean = {
   description: string;
   country: string;
 };
+
+export type CartBean = Pick<Bean, 'id' | 'name' | 'cost' | 'image'> & { quantity: number };
+
+export type Cart = {
+  beans: CartBean[];
+}
