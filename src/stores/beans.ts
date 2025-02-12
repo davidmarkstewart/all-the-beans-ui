@@ -1,18 +1,6 @@
 import { defineStore } from 'pinia';
 import beanJson from '../data/beans.json';
-import { Bean } from '../types';
-
-interface RawBean {
-  _id: string;
-  index: number;
-  isBOTD: boolean;
-  Name: string;
-  Country: string;
-  colour: string;
-  Cost: string;
-  Image: string;
-  Description: string;
-}
+import { Bean, RawBean } from '../types';
 
 export const useBeansStore = defineStore('beans', {
   state: () => ({

@@ -37,18 +37,10 @@ const filterOptions = computed(() => {
 
 <template>
   <div class="bg-white rounded-lg shadow-lg flex px-5 pb-8 pt-4.5 mb-10 gap-8">
-    <div class="flex-1">
-      <CountryInput v-model="filteredCountry" :countries="filterOptions.countries" />
-    </div>
-    <div class="flex-1">
-      <ColourInput v-model="filteredColour" :colours="filterOptions.colours" />
-    </div>
-    <div class="flex-1">
-      <CostInput v-model="filteredCost" :costs="filterOptions.costs" />
-    </div>
-    <div class="flex-1">
-      <SearchInput v-model="search" />
-    </div>
+    <CountryInput v-model="filteredCountry" :countries="filterOptions.countries" />
+    <ColourInput v-model="filteredColour" :colours="filterOptions.colours" />
+    <CostInput v-model="filteredCost" :costs="filterOptions.costs" />
+    <SearchInput v-model="search" />
   </div>
   <ul class="divide-y divide-[#1b09096f] bg-white rounded-lg shadow-lg">
     <BeanListItem v-for="bean in filteredBeans" :key="bean.id" :bean="bean" />

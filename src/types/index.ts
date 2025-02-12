@@ -15,3 +15,15 @@ export type CartBean = Pick<Bean, 'id' | 'name' | 'cost' | 'image'> & { quantity
 export type Cart = {
   beans: CartBean[];
 }
+
+export type RawBean = {
+  _id: string;
+  index: number;
+  isBOTD: boolean;
+  Name: string;
+  Country: string;
+  colour: string;
+  Cost: string;
+  Image: string;
+  Description: string;
+}
