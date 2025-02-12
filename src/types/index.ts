@@ -1,11 +1,11 @@
 export type Bean = {
-  _id: string;
+  id: string;
   index: number;
   isBOTD: boolean;
-  Cost: string;
-  Image: string;
+  cost: number;
+  image: string;
   colour: string;
-  Name: string;
-  Description: string;
-  Country: string;
+  name: string;
+  description: string;
+  country: string;
 };
