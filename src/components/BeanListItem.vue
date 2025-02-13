@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import Swal from 'sweetalert2';
 import { PropType } from 'vue';
 import { Bean, CartBean } from '../types';
-import Swal from 'sweetalert2';
 import { useCartStore } from '../stores/cart';
 import { uppercaseFirstAndRestLower } from '../helpers';
 

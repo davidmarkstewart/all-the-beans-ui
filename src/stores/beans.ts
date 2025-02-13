@@ -23,6 +23,13 @@ export const useBeansStore = defineStore('beans', {
     getBeanCountries: (state) => [...new Set(state.beans.map((bean) => bean.country))],
     getBeanColours: (state) => [...new Set(state.beans.map((bean) => bean.colour))],
     getBeanById: (state) => (id: string) => state.beans.find((bean) => bean.id === id),
+    getBeanOfTheDay: (state) => {
+      const bean = state.beans.find((bean) => bean.isBOTD);
+      if (!bean) {
+        throw new Error('Bean of the day not found');
+      }
+      return bean;
+    },
   },
   actions: {
     getFilteredBeansCostRanges(beans: Bean[]) {

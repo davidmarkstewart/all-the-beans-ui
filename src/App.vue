@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BeanOfTheDay from './components/BeanOfTheDay.vue';
 import { useCartStore } from './stores/cart';
 
 const store = useCartStore();
@@ -17,11 +18,14 @@ const store = useCartStore();
           <span class="absolute top-4.5 right-4 transform translate-x-1/2 -translate-y-1/2 bg-white text-[#411717] rounded-full w-6 h-6 flex items-center justify-center text-xs">{{ store.getCartItemCount }}</span>
         </RouterLink>
       </div>
+      <div class="ml-auto">
+        <BeanOfTheDay />
+      </div>
     </div>
   </nav>
   <header class="bg-white shadow-sm">
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <h1 class="text-3xl font-bold tracking-tight text-[#2d0404]">Available Beans</h1>
+      <h1 class="text-3xl font-bold tracking-tight text-[#2d0404]">Beans</h1>
     </div>
   </header>
   <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
