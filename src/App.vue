@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import BeanOfTheDay from './components/BeanOfTheDay.vue';
 import LogoSvg from './components/LogoSvg.vue';
+import router from './router';
+import Swal from 'sweetalert2';
 import { computed } from 'vue';
 import { useCartStore } from './stores/cart';
 import { useCoreStore } from './stores/core';
@@ -12,6 +14,23 @@ const coreStore = useCoreStore();
 const title = computed(() => coreStore.getPageHeader);
 
 const navButtonClasses = 'text-center cursor-pointer rounded-md bg-[#2d0404] min-w-20  md:min-w-25 px-2 py-1 md:px-5 md:py-2 text-sm font-medium text-white inline-block';
+
+const navigateToCart = () => {
+  if (cartItemCount.value > 0) {
+    router.push({ name: 'order-form' });
+  } else {
+    Swal.fire({
+      title: 'Cart is empty',
+      text: 'Please add some beans to your cart',
+      icon: 'info',
+      confirmButtonText: 'OK',
+      customClass: {
+        confirmButton: 'rounded-md bg-[#2d0404] px-3 py-2 text-sm font-medium text-white',
+      },
+      buttonsStyling: false,
+    });
+  }
+};
 </script>
 
 <template>
@@ -22,10 +41,10 @@ const navButtonClasses = 'text-center cursor-pointer rounded-md bg-[#2d0404] min
       </div>
       <div class="ml-2 md:ml-8 flex items-center">
         <RouterLink :class="navButtonClasses" :to="{ name: 'bean-list' }">Beans</RouterLink>
-        <RouterLink :class="`${navButtonClasses} ml-4 relative`" :to="{ name: 'order-form' }">
+        <a :class="`${navButtonClasses} ml-4 relative`" @click="navigateToCart">
           Cart
           <span v-if="cartItemCount !== 0" class="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-white text-[#411717] rounded-full w-5 h-5 flex items-center justify-center text-xs">{{ cartItemCount }}</span>
-        </RouterLink>
+        </a>
       </div>
       <div class="ml-auto">
         <BeanOfTheDay />

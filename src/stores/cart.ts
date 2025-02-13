@@ -14,7 +14,8 @@ export const useCartStore = defineStore('cart', {
       return this.cart.beans.reduce((acc, bean) => acc + bean.quantity, 0);
     },
     getCartTotal(): number {
-      return this.cart.beans.reduce((acc, bean) => acc + bean.quantity * bean.cost, 0);
+      const total = this.cart.beans.reduce((acc, bean) => acc + bean.quantity * bean.cost, 0);
+      return parseFloat(total.toFixed(2));
     },
     getCartQuantity(): number {
       return this.cart.beans.reduce((acc, bean) => acc + bean.quantity, 0);

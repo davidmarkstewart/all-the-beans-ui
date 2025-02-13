@@ -1,5 +1,20 @@
+<script setup lang="ts">
+import { defineProps } from 'vue';
+
+const props = defineProps({
+  colour: {
+    type: String,
+    default: '#ffffff',
+  },
+  width: {
+    type: String,
+    default: '75px',
+  },
+});
+</script>
+
 <template>
-  <svg fill="#ffffff" width="75px" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 470" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 470 470">
+  <svg :fill="props.colour" :width="props.width" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 470" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 470 470">
     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
     <g id="SVGRepo_iconCarrier">

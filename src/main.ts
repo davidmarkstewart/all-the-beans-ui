@@ -11,10 +11,9 @@ const app = createApp(App);
 app.use(pinia);
 app.use(router);
 
-router.beforeEach((to, from, next) => {
-  console.log('test');
+router.beforeEach((to, _from, next) => {
   const coreStore = useCoreStore();
-  const pageTitle: string = to.meta.title as string || 'Default Title';
+  const pageTitle: string = to.meta.title as string || 'Beans';
   coreStore.setPageHeader(pageTitle);
   next();
 });

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LogoSvg from '../components/LogoSvg.vue';
 import { useCartStore } from '../stores/cart';
 import { uppercaseFirstAndRestLower } from '../helpers';
 
@@ -25,8 +26,11 @@ const submitOrder = () => {
       </div>
     </li>
     <li class="flex items-center p-4 mr-7 h-20 md:h-30">
-      <div class="ml-auto">
-          {{ `£${store.getCartTotal}` }} <span class="text-sm ml-2">Qty: {{ store.getCartQuantity }}</span>
+      <div class="flex items-center ml-auto">
+        <LogoSvg class="mr-1" colour="#411717" width="45px" />
+        <span class="mr-15">Total:</span>
+        {{ `£${store.getCartTotal}` }}
+        <span class="text-sm ml-2 mt-1.5">Qty: {{ store.getCartQuantity }}</span>
       </div>
     </li>
   </ul>
