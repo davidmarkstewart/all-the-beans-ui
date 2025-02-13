@@ -11,9 +11,9 @@ const submitOrder = () => {
 
 <template>
   <ul class="divide-y divide-[#1b09096f] bg-white rounded-lg shadow-lg text-2xl tracking-tight text-[#2d0404]">
-    <li v-for="bean in store.getCart.beans" :key="bean.id" class="p-4 min-h-25">
-      <div class="flex items-center w-full">
-        <div class="mr-7">
+    <li v-for="bean in store.getCart.beans" :key="bean.id" class="p-4 h-20 md:h-30">
+      <div class="flex items-center w-full h-full">
+        <div class="mr-7 hidden md:block">
           <img class="size-20 rounded-full" :src="bean.image" alt="bean.Name" />
         </div>
         <div class="mr-7">
@@ -24,7 +24,7 @@ const submitOrder = () => {
         </div>
       </div>
     </li>
-    <li class="flex items-center p-4 min-h-25 mr-7">
+    <li class="flex items-center p-4 mr-7 h-20 md:h-30">
       <div class="ml-auto">
           {{ `£${store.getCartTotal}` }} <span class="text-sm ml-2">Qty: {{ store.getCartQuantity }}</span>
       </div>

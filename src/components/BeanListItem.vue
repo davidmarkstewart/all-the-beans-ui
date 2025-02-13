@@ -71,7 +71,7 @@ const addToCart = (bean: Bean) => {
   <li class="p-4">
     <div class="flex w-full">
       <div>
-        <img class="size-30 rounded-full" :src="bean.image" alt="bean.Name" />
+        <img class="size-30 rounded-full hidden md:block" :src="bean.image" alt="bean.Name" />
       </div>
       
       <div class="ml-4 grow flex flex-col justify-between">
@@ -85,7 +85,7 @@ const addToCart = (bean: Bean) => {
             <span class="text-[#2d0404] ml-2">Color: </span> {{ uppercaseFirstAndRestLower(props.bean.colour) }}
           </p>
         </div>
-        <div class="flex justify-between items-end pb-1">
+        <div class="flex justify-between items-end pb-1 mt-5 md:mt-0">
           <button @click="moreInfo(props.bean)" class="cursor-pointer rounded-md bg-[#2d0404] px-3 py-2 text-sm font-medium text-white">More Info</button>
           <button @click="addToCart(props.bean)" class="cursor-pointer rounded-md bg-[#2d0404] px-3 py-2 text-sm font-medium text-white">Add to Cart</button>
         </div>

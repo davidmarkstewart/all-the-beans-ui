@@ -36,11 +36,11 @@ const filterOptions = computed(() => {
 </script>
 
 <template>
-  <div class="bg-white rounded-lg shadow-lg flex px-5 pb-8 pt-4.5 mb-10 gap-8">
-    <CountryInput v-model="filteredCountry" :countries="filterOptions.countries" />
-    <ColourInput v-model="filteredColour" :colours="filterOptions.colours" />
-    <CostInput v-model="filteredCost" :costs="filterOptions.costs" />
-    <SearchInput v-model="search" />
+  <div class="bg-white rounded-lg shadow-lg flex flex-col md:flex-row px-5 pb-8 pt-4.5 mb-10 gap-8">
+    <CountryInput class="w-full md:w-auto" v-model="filteredCountry" :countries="filterOptions.countries" />
+    <ColourInput class="w-full md:w-auto" v-model="filteredColour" :colours="filterOptions.colours" />
+    <CostInput class="w-full md:w-auto" v-model="filteredCost" :costs="filterOptions.costs" />
+    <SearchInput class="w-full md:w-auto" v-model="search" />
   </div>
   <ul class="divide-y divide-[#1b09096f] bg-white rounded-lg shadow-lg">
     <BeanListItem v-for="bean in filteredBeans" :key="bean.id" :bean="bean" />
