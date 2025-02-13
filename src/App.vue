@@ -3,9 +3,13 @@ import BeanOfTheDay from './components/BeanOfTheDay.vue';
 import LogoSvg from './components/LogoSvg.vue';
 import { computed } from 'vue';
 import { useCartStore } from './stores/cart';
+import { useCoreStore } from './stores/core';
 
-const store = useCartStore();
-const cartItemCount = computed(() => store.getCartItemCount);
+const cartStore = useCartStore();
+const cartItemCount = computed(() => cartStore.getCartItemCount);
+
+const coreStore = useCoreStore();
+const title = computed(() => coreStore.getPageHeader);
 
 const navButtonClasses = 'text-center cursor-pointer rounded-md bg-[#2d0404] min-w-20  md:min-w-25 px-2 py-1 md:px-5 md:py-2 text-sm font-medium text-white inline-block';
 </script>
@@ -30,7 +34,7 @@ const navButtonClasses = 'text-center cursor-pointer rounded-md bg-[#2d0404] min
   </nav>
   <header class="bg-white shadow-sm">
     <div class="mx-auto max-w-7xl px-6 py-3 md:px-8">
-      <h1 class=" text-lg md:text-3xl font-bold tracking-tight text-[#2d0404]">Beans</h1>
+      <h1 class=" text-lg md:text-3xl font-bold tracking-tight text-[#2d0404]">{{ title }}</h1>
     </div>
   </header>
   <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
