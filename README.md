@@ -1,5 +1,40 @@
-# Vue 3 + TypeScript + Vite
+# All The Beans UI
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Tools Used
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+### Vue 3
+Decided to use Vue as it's a framework I have previous experience with and has a low learning curve to get back into.
+
+### TypeScript
+Went with TypeScript as it adds a level of compile-time safety.
+
+### Vite
+Used Vite as it does a lot of initial project setup and provides a good all-round development experience.
+
+### Pinia
+Pinia for state management. Probably overkill for a small project.
+
+### Vue Router
+Vue Router for navigation.
+
+### Tailwind CSS
+Tailwind CSS for styling. Writing CSS from scratch can be a pain. I really like the utility class style of writing CSS.
+
+### Vitest
+Vitest for unit tests. I like its simplicity, but Jest would be just as suitable.
+
+## Project Setup
+
+### Prerequisites
+- Node.js (version 14 or higher)
+- npm (version 6 or higher) or yarn (version 1.22 or higher)
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/all-the-beans-ui.git
+   cd all-the-beans-ui
+
+### Run Tests
+1. Clone repo and run npm install
+2. Run npm run test
