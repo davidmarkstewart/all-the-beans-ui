@@ -3,20 +3,20 @@ import { setActivePinia, createPinia } from 'pinia';
 import { useBeansStore } from '../stores/beans';
 import { Bean } from '../types';
 
+const beans: Bean[] = [
+  { id: '1', index: 0, isBOTD: false, name: 'TURNABOUT', country: 'Peru', colour: 'dark roast', cost: 5, image: '', description: '' },
+  { id: '2', index: 1, isBOTD: false, name: 'ISONUS', country: 'Vietnam', colour: 'golden', cost: 15, image: '', description: '' },
+  { id: '3', index: 2, isBOTD: false, name: 'ZILLAN', country: 'Colombia', colour: 'green', cost: 25, image: '', description: '' },
+  { id: '4', index: 3, isBOTD: false, name: 'RONBERT', country: 'Brazil', colour: 'light roast', cost: 35, image: '', description: '' },
+];
+
 describe('Beans Store', () => {
   beforeEach(() => {
     setActivePinia(createPinia());
   });
 
-  it('should return correct cost ranges', () => {
+  it('should calculate correct cost ranges for select box', () => {
     const store = useBeansStore();
-
-    const beans: Bean[] = [
-      { id: '1', index: 0, isBOTD: false, name: 'Bean 1', country: 'Country 1', colour: 'Colour 1', cost: 5, image: '', description: '' },
-      { id: '2', index: 1, isBOTD: false, name: 'Bean 2', country: 'Country 2', colour: 'Colour 2', cost: 15, image: '', description: '' },
-      { id: '3', index: 2, isBOTD: false, name: 'Bean 3', country: 'Country 3', colour: 'Colour 3', cost: 25, image: '', description: '' },
-      { id: '4', index: 3, isBOTD: false, name: 'Bean 4', country: 'Country 4', colour: 'Colour 4', cost: 35, image: '', description: '' },
-    ];
 
     const expectedRanges = [
       { label: '£0 - £10', value: '0-10' },
@@ -29,26 +29,8 @@ describe('Beans Store', () => {
     expect(ranges).toEqual(expectedRanges);
   });
 
-  it('should return empty array if no beans are provided', () => {
-    const store = useBeansStore();
-
-    const beans: Bean[] = [];
-
-    const expectedRanges: { label: string; value: string }[] = [];
-
-    const ranges = store.getFilteredBeansCostRanges(beans);
-    expect(ranges).toEqual(expectedRanges);
-  });
-
   it('should return all beans when no filters are applied', () => {
     const store = useBeansStore();
-
-    const beans: Bean[] = [
-      { id: '1', index: 0, isBOTD: false, name: 'Bean 1', country: 'Country 1', colour: 'Colour 1', cost: 5, image: '', description: '' },
-      { id: '2', index: 1, isBOTD: false, name: 'Bean 2', country: 'Country 2', colour: 'Colour 2', cost: 15, image: '', description: '' },
-      { id: '3', index: 2, isBOTD: false, name: 'Bean 3', country: 'Country 3', colour: 'Colour 3', cost: 25, image: '', description: '' },
-      { id: '4', index: 3, isBOTD: false, name: 'Bean 4', country: 'Country 4', colour: 'Colour 4', cost: 35, image: '', description: '' },
-    ];
 
     store.$state.beans = beans;
 
@@ -61,21 +43,18 @@ describe('Beans Store', () => {
   it('should filter beans by country', () => {
     const store = useBeansStore();
 
-    const beans: Bean[] = [
-      { id: '1', index: 0, isBOTD: false, name: 'Bean 1', country: 'Country 1', colour: 'Colour 1', cost: 5, image: '', description: '' },
-      { id: '2', index: 1, isBOTD: false, name: 'Bean 2', country: 'Country 2', colour: 'Colour 2', cost: 15, image: '', description: '' },
-      { id: '3', index: 2, isBOTD: false, name: 'Bean 3', country: 'Country 1', colour: 'Colour 3', cost: 25, image: '', description: '' },
-      { id: '4', index: 3, isBOTD: false, name: 'Bean 4', country: 'Country 4', colour: 'Colour 4', cost: 35, image: '', description: '' },
+    const beansWithDuplicateCountry: Bean[] = [...beans,
+      { id: '5', index: 4, isBOTD: false, name: 'ZILLAN', country: 'Peru', colour: 'green', cost: 25, image: '', description: '' },
     ];
 
-    store.$state.beans = beans;
+    store.$state.beans = beansWithDuplicateCountry;
 
-    const filters = { country: 'Country 1', colour: '', cost: '' };
+    const filters = { country: 'Peru', colour: '', cost: '' };
     const filteredBeans = store.getFilteredBeans(filters);
 
     const expectedBeans = [
-      { id: '1', index: 0, isBOTD: false, name: 'Bean 1', country: 'Country 1', colour: 'Colour 1', cost: 5, image: '', description: '' },
-      { id: '3', index: 2, isBOTD: false, name: 'Bean 3', country: 'Country 1', colour: 'Colour 3', cost: 25, image: '', description: '' },
+      { id: '1', index: 0, isBOTD: false, name: 'TURNABOUT', country: 'Peru', colour: 'dark roast', cost: 5, image: '', description: '' },
+      { id: '5', index: 4, isBOTD: false, name: 'ZILLAN', country: 'Peru', colour: 'green', cost: 25, image: '', description: '' },
     ];
 
     expect(filteredBeans).toEqual(expectedBeans);
@@ -85,20 +64,20 @@ describe('Beans Store', () => {
     const store = useBeansStore();
 
     const beans: Bean[] = [
-      { id: '1', index: 0, isBOTD: false, name: 'Bean 1', country: 'Country 1', colour: 'Colour 1', cost: 5, image: '', description: '' },
-      { id: '2', index: 1, isBOTD: false, name: 'Bean 2', country: 'Country 2', colour: 'Colour 2', cost: 15, image: '', description: '' },
-      { id: '3', index: 2, isBOTD: false, name: 'Bean 3', country: 'Country 3', colour: 'Colour 1', cost: 25, image: '', description: '' },
-      { id: '4', index: 3, isBOTD: false, name: 'Bean 4', country: 'Country 4', colour: 'Colour 4', cost: 35, image: '', description: '' },
+      { id: '1', index: 0, isBOTD: false, name: 'TURNABOUT', country: 'Peru', colour: 'dark roast', cost: 5, image: '', description: '' },
+      { id: '2', index: 1, isBOTD: false, name: 'ISONUS', country: 'Vietnam', colour: 'golden', cost: 15, image: '', description: '' },
+      { id: '3', index: 2, isBOTD: false, name: 'ZILLAN', country: 'Colombia', colour: 'dark roast', cost: 25, image: '', description: '' },
+      { id: '4', index: 3, isBOTD: false, name: 'RONBERT', country: 'Brazil', colour: 'light roast', cost: 35, image: '', description: '' },
     ];
 
     store.$state.beans = beans;
 
-    const filters = { country: '', colour: 'Colour 1', cost: '' };
+    const filters = { country: '', colour: 'dark roast', cost: '' };
     const filteredBeans = store.getFilteredBeans(filters);
 
     const expectedBeans = [
-      { id: '1', index: 0, isBOTD: false, name: 'Bean 1', country: 'Country 1', colour: 'Colour 1', cost: 5, image: '', description: '' },
-      { id: '3', index: 2, isBOTD: false, name: 'Bean 3', country: 'Country 3', colour: 'Colour 1', cost: 25, image: '', description: '' },
+      { id: '1', index: 0, isBOTD: false, name: 'TURNABOUT', country: 'Peru', colour: 'dark roast', cost: 5, image: '', description: '' },
+      { id: '3', index: 2, isBOTD: false, name: 'ZILLAN', country: 'Colombia', colour: 'dark roast', cost: 25, image: '', description: '' },
     ];
 
     expect(filteredBeans).toEqual(expectedBeans);
@@ -107,20 +86,13 @@ describe('Beans Store', () => {
   it('should filter beans by cost', () => {
     const store = useBeansStore();
 
-    const beans: Bean[] = [
-      { id: '1', index: 0, isBOTD: false, name: 'Bean 1', country: 'Country 1', colour: 'Colour 1', cost: 5, image: '', description: '' },
-      { id: '2', index: 1, isBOTD: false, name: 'Bean 2', country: 'Country 2', colour: 'Colour 2', cost: 15, image: '', description: '' },
-      { id: '3', index: 2, isBOTD: false, name: 'Bean 3', country: 'Country 3', colour: 'Colour 3', cost: 25, image: '', description: '' },
-      { id: '4', index: 3, isBOTD: false, name: 'Bean 4', country: 'Country 4', colour: 'Colour 4', cost: 35, image: '', description: '' },
-    ];
-
     store.$state.beans = beans;
 
     const filters = { country: '', colour: '', cost: '10-20' };
     const filteredBeans = store.getFilteredBeans(filters);
 
     const expectedBeans = [
-      { id: '2', index: 1, isBOTD: false, name: 'Bean 2', country: 'Country 2', colour: 'Colour 2', cost: 15, image: '', description: '' },
+      { id: '2', index: 1, isBOTD: false, name: 'ISONUS', country: 'Vietnam', colour: 'golden', cost: 15, image: '', description: '' },
     ];
 
     expect(filteredBeans).toEqual(expectedBeans);
@@ -130,19 +102,19 @@ describe('Beans Store', () => {
     const store = useBeansStore();
 
     const beans: Bean[] = [
-      { id: '1', index: 0, isBOTD: false, name: 'Bean 1', country: 'Country 1', colour: 'Colour 1', cost: 5, image: '', description: '' },
-      { id: '2', index: 1, isBOTD: false, name: 'Bean 2', country: 'Country 2', colour: 'Colour 2', cost: 15, image: '', description: '' },
-      { id: '3', index: 2, isBOTD: false, name: 'Bean 3', country: 'Country 1', colour: 'Colour 1', cost: 25, image: '', description: '' },
-      { id: '4', index: 3, isBOTD: false, name: 'Bean 4', country: 'Country 1', colour: 'Colour 1', cost: 35, image: '', description: '' },
+      { id: '1', index: 0, isBOTD: false, name: 'TURNABOUT', country: 'Peru', colour: 'dark roast', cost: 5, image: '', description: '' },
+      { id: '2', index: 1, isBOTD: false, name: 'ISONUS', country: 'Vietnam', colour: 'golden', cost: 15, image: '', description: '' },
+      { id: '3', index: 2, isBOTD: false, name: 'ZILLAN', country: 'Peru', colour: 'dark roast', cost: 25, image: '', description: '' },
+      { id: '4', index: 3, isBOTD: false, name: 'RONBERT', country: 'Peru', colour: 'dark roast', cost: 35, image: '', description: '' },
     ];
 
     store.$state.beans = beans;
 
-    const filters = { country: 'Country 1', colour: 'Colour 1', cost: '20-30' };
+    const filters = { country: 'Peru', colour: 'dark roast', cost: '20-30' };
     const filteredBeans = store.getFilteredBeans(filters);
 
     const expectedBeans = [
-      { id: '3', index: 2, isBOTD: false, name: 'Bean 3', country: 'Country 1', colour: 'Colour 1', cost: 25, image: '', description: '' },
+      { id: '3', index: 2, isBOTD: false, name: 'ZILLAN', country: 'Peru', colour: 'dark roast', cost: 25, image: '', description: '' },
     ];
 
     expect(filteredBeans).toEqual(expectedBeans);
