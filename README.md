@@ -29,12 +29,19 @@ Vitest for unit tests. I like its simplicity, but Jest would be just as suitable
 - Node.js (version 14 or higher)
 - npm (version 6 or higher) or yarn (version 1.22 or higher)
 
-### Installation
+### Run Project and Tests
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/all-the-beans-ui.git
-   cd all-the-beans-ui
+```bash
+git clone https://github.com/your-username/all-the-beans-ui.git
+cd all-the-beans-ui
 
-### Run Tests
-1. Clone repo and run npm install
-2. Run npm run test
+2. Install dependencies:
+```bash
+npm install
+
+3. Run project
+```bash
+npm run dev
+
+4. Run tests:
+npm run test
