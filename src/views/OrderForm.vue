@@ -34,8 +34,6 @@ const submitOrder = () => {
       </div>
     </li>
   </ul>
-
-
   <div class="bg-white rounded-lg shadow-lg mt-12">
     <div class="px-4 pt-4 pb-6">
       <h2 class="text-2xl tracking-tight text-[#2d0404]">Order Information</h2>
@@ -46,7 +44,6 @@ const submitOrder = () => {
             <input type="text" name="firstName" id="firstName" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
           </div>
         </div>
-
         <div class="sm:col-span-3">
           <label for="last-name" class="block text-sm/6 font-medium text-[#2d0404]">Last name</label>
           <div class="mt-2">
@@ -59,14 +56,12 @@ const submitOrder = () => {
             <input type="text" name="streetAddress" id="streetAddress" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
           </div>
         </div>
-
         <div class="sm:col-span-3 sm:col-start-1">
           <label for="city" class="block text-sm/6 font-medium text-[#2d0404]">City</label>
           <div class="mt-2">
             <input type="text" name="city" id="city" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
           </div>
         </div>
-
         <div class="sm:col-span-1">
           <label for="postcode" class="block text-sm/6 font-medium text-[#2d0404]">Postcode</label>
           <div class="mt-2">
@@ -76,7 +71,6 @@ const submitOrder = () => {
         <div class="sm:col-span-3">
           <button @click="submitOrder" class="cursor-pointer rounded-md bg-[#2d0404] px-3 py-2 text-sm font-medium text-white">Submit</button>
         </div>
-
       </div>
     </div>
   </div>

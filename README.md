@@ -38,7 +38,7 @@ cd all-the-beans-ui
 2. Install dependencies:
 npm install
 
-3. Run project
+3. Run project:
 npm run dev
 
 4. Run tests:
