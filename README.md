@@ -32,7 +32,7 @@ Vitest for unit tests. I like its simplicity, but Jest would be just as suitable
 ### Run Project and Tests
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/all-the-beans-ui.git
+git clone https://github.com/davidmarkstewart/all-the-beans-ui.git
 cd all-the-beans-ui
 
 2. Install dependencies:
